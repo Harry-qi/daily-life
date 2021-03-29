@@ -1,0 +1,59 @@
+.container{
+  padding: 10px;
+  color: #333;
+}
+.list-item{
+  border: 1px solid #988;
+  padding: 10px;
+  padding-left: 30px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+.list-item .left .icon{
+  font-size: 40px;
+}
+.list-item .left span{
+  margin-left: 10px;
+  font-size: 20px;
+  font-weight: 500;
+}
+.right{
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  align-items: center;
+}
+.right span:first-child{
+  font-weight: 500;
+}
+.right span:last-child{
+  margin-top: 5px;
+  font-size: 18px;
+}
+.pop-box{
+  background: #fff;
+  padding: 20px;
+  .handle-box{
+    margin-bottom: 20px;
+    span{
+      padding: 4px 8px;
+      border-radius: 8px;
+      background: #eee;
+      color: #333;
+      font-weight: bold;
+    }
+  }
+  .label-span{
+    margin-bottom: 15px;
+    font-weight: bold;
+    display: block;
+  }
+  .input{
+    border: 1px solid #f5f7f2;
+    border-radius: 8px;
+    background: #f5f7f2;
+    padding: 10px;
+  }
+}
+
