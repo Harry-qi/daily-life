@@ -33,9 +33,13 @@
 }
 .pop-box{
   background: #fff;
-  padding: 20px;
+  padding-top: 20px;
+  .input-box{
+    margin-right: 20px;
+    margin-left: 20px;
+  }
   .handle-box{
-    margin-bottom: 20px;
+    margin: 20px;
     span{
       padding: 4px 8px;
       border-radius: 8px;
@@ -56,4 +60,47 @@
     padding: 10px;
   }
 }
-
+.icon-container{
+  overflow-x: scroll;
+  overflow-y: hidden;
+  margin-top: 20px;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  &::-webkit-scrollbar {
+    background-color: transparent;
+  }
+  .inner-box{
+    width: 498px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 20px;
+    .active-icon{
+      border: 2px solid #333;
+    }
+    .active-color{
+      border: 2px solid #333;
+    }
+  }
+  .icon-box{
+    width: 50px;
+    height: 50px;
+    background: #dcdcdc;
+    border-radius: 12px;
+    margin-right: 12px;
+    margin-bottom: 10px;
+    border: 2px solid transparent;
+    svg{
+      width: 50%;
+      height: 50%;
+    }
+  }
+  .color-box{
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    border: 2px solid transparent;
+  }
+}
