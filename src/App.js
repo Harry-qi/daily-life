@@ -15,7 +15,9 @@ function App() {
 		'icon-dengshanma',
 	];
 	let [visible, setVisible] = useState(false);
-	const toggle = (type) => setVisible((visible = type));
+	const close = () => {
+		setVisible(false);
+	};
 	return (
 		<div className="container">
 			<List nameList={nameList} dayList={dayList} IconList={IconList} />
@@ -23,10 +25,10 @@ function App() {
 				icon="icon-jiahao"
 				className="add-icon"
 				onclick={() => {
-					setVisible((visible = true));
+					setVisible(true);
 				}}
 			/>
-			<Dialog visible={visible} toggle={toggle} />
+			<Dialog visible={visible} close={close} />
 		</div>
 	);
 }
