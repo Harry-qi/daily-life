@@ -1,26 +1,64 @@
 import './App.scss';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import List from './component/list';
 import Icon from './component/icon';
 import Dialog from './component/dialog';
 
 function App() {
-	const nameList = ['健身', '坚持喝水', '看书', '摄影', '登山'];
-	const dayList = [10, 12, 30, 43, 21];
-	const IconList = [
-		'icon-jianshen ',
-		'icon-shuibei',
-		'icon-shu',
-		'icon-chongwusheying1',
-		'icon-dengshanma',
-	];
+	const [nameList, setNameList] = useState([]);
+	const [dayList, setDayList] = useState([]);
+	const [IconList, setIconList] = useState([]);
+	let [habit, setHabit] = useState([]);
+	useEffect(() => {
+		init();
+	}, []);
 	let [visible, setVisible] = useState(false);
 	const close = () => {
 		setVisible(false);
 	};
+	const checkIn = (index) => {
+		console.log(index);
+		let tem = JSON.parse(JSON.stringify(habit));
+		if (tem[index].status === 0) {
+			tem[index].day++;
+			tem[index].status = 1;
+		}
+		localStorage.setItem('habit', JSON.stringify(tem));
+		setHabit(tem);
+		init();
+	};
+	const init = () => {
+		let localData = JSON.parse(localStorage.getItem('habit'));
+		const temName = [];
+		const temDay = [];
+		const temIcon = [];
+		if (localData) {
+			localData.forEach((item) => {
+				temName.push(item.title);
+				temDay.push(item.day);
+				temIcon.push(item.icon);
+			});
+			setHabit(localData);
+			setNameList(temName);
+			setDayList(temDay);
+			setIconList(temIcon);
+		}
+	};
 	return (
 		<div className="container">
-			<List nameList={nameList} dayList={dayList} IconList={IconList} />
+			{nameList.length !== 0 && (
+				<List
+					nameList={nameList}
+					dayList={dayList}
+					IconList={IconList}
+					handelCheckIn={(i) => {
+						checkIn(i);
+					}}
+				/>
+			)}
+			{!nameList.length && (
+				<div className="tips">暂无任务，点击下面按钮添加吧</div>
+			)}
 			<Icon
 				icon="icon-jiahao"
 				className="add-icon"
@@ -28,7 +66,13 @@ function App() {
 					setVisible(true);
 				}}
 			/>
-			<Dialog visible={visible} close={close} />
+			<Dialog
+				visible={visible}
+				close={close}
+				init={() => {
+					init();
+				}}
+			/>
 		</div>
 	);
 }

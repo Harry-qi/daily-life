@@ -6,18 +6,30 @@ import ColorIconCon from './colorIconCon';
 
 function Dialog(props) {
 	const [title, setTitle] = useState('');
+	const [icon, setIcon] = useState('icon-dengshanma');
 	let [dialogHeight, setHeight] = useState(100);
 	let [habit, setHabit] = useState([]);
 	// 关闭dialog
-	const close = () => props.close();
+	const close = () => {
+		props.close();
+		props.init();
+	};
 	// 保存后关闭dialog
 	const save = () => {
-		let tem = habit;
-		tem.push(title);
-		setHabit(tem);
-		localStorage.setItem('habit', JSON.stringify(tem));
+		if (title === '') {
+			return;
+		}
+		let tem = {
+			color: nowColor,
+			title: title,
+			icon: icon,
+			status: 0,
+			day: 0,
+		};
+		habit.push(tem);
+		localStorage.setItem('habit', JSON.stringify(habit));
 		setTitle('');
-		props.close();
+		close();
 	};
 	// 改变颜色
 	let [nowColor, setNowColor] = useState('#eee');
@@ -73,7 +85,11 @@ function Dialog(props) {
 							changeColor(e);
 						}}
 					/>
-					<IconList />
+					<IconList
+						handelIcon={(val) => {
+							setIcon(val);
+						}}
+					/>
 				</ColorIconCon.Provider>
 			</div>
 		</Popup>

@@ -1,7 +1,7 @@
 import Icon from './icon';
 import React, { useState, useContext } from 'react';
 import ColorIconCon from './colorIconCon';
-function IconList() {
+function IconList(props) {
 	let icons = [
 		'icon-dengshanma',
 		'icon-chihaochide',
@@ -47,6 +47,7 @@ function IconList() {
 							key={item}
 							onClick={() => {
 								setActiveIndex(index);
+								props.handelIcon(item);
 							}}
 						>
 							<Icon icon={item} />

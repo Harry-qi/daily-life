@@ -9,6 +9,9 @@ function List(props) {
 						day={props.dayList[index]}
 						icon={props.IconList[index]}
 						key={index}
+						onClick={() => {
+							props.handelCheckIn(index);
+						}}
 					/>
 				);
 			})}
